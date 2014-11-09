@@ -1,0 +1,36 @@
+<div class="row collapse">
+    <div class="small-12 columns">
+
+        <div class="row collapse">
+            <p>I guess this should be the description.</p>
+        </div>
+        <div class="row collapse prefix-radius">
+            <div class="small-2 columns">
+                <span class="prefix">Name of Entity</span>
+            </div>
+            <div class="small-10 columns">
+                <input type="text" placeholder="Hasso Plattner Institut" id="search" ng-model="ExchangeData.search">
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix">Type</span>
+            </div>
+            <div class="small-10 columns">
+                <select ng-model="ExchangeData.type">
+                    Location, Organization, Person
+                    <option value="person">Person</option>
+                    <option value="organization">Organization</option>
+                    <option value="location">Location</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row collapse">
+        <div class="small-12 columns">
+            <a href="#/disambiguate" class="button small-12 columns">Go</a>
+        </div>
+    </div>
+
+</div>
+</div>
