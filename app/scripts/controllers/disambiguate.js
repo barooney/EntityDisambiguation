@@ -47,15 +47,16 @@ angular.module('entityDisambiguationApp')
 
         $scope.filterEntities = function (entities) {
             var tmpEntities = entities.entities;
-            if (tmpEntities.length == 1) {
+            if (tmpEntities === undefined) { return; }
+            if (tmpEntities.length === 1) {
                 $scope.ExchangeData.result = [tmpEntities[0]];
             } else {
                 switch ($scope.ExchangeData.type) {
                 case 'person':
                     $scope.filterFunction = function (e) {
-                        if (e.claims == undefined || !e.claims.hasOwnProperty('P31')) return false;
+                        if (e.claims === undefined || !e.claims.hasOwnProperty('P31')) { return false; }
                         for (var claim in e.claims.P31) {
-                            if (e.claims.P31[claim].mainsnak.datavalue.value['numeric-id'] == 5) return true; // is instance of human
+                            if (e.claims.P31[claim].mainsnak.datavalue.value['numeric-id'] === 5) { return true; } // is instance of human
                         }
                         return false;
                     };
@@ -63,7 +64,7 @@ angular.module('entityDisambiguationApp')
                 case 'organization':
                     $scope.filterFunction = function (e) {
 
-                        return (e.claims != undefined &&
+                        return (e.claims !== undefined &&
                             (e.claims.hasOwnProperty('P571') ||    // Date of foundation / creation
                                 e.claims.hasOwnProperty('P452') || // Industry
                                 e.claims.hasOwnProperty('P159') || // Headquarter
@@ -74,7 +75,7 @@ angular.module('entityDisambiguationApp')
                     break;
                 case 'location':
                     $scope.filterFunction = function (e) {
-                        return (e.claims != undefined &&
+                        return (e.claims !== undefined &&
                             (e.claims.hasOwnProperty('P17') ||     // Country
                                 e.claims.hasOwnProperty('P30') ||  // Continent
                                 e.claims.hasOwnProperty('P131') || // Administrative Entity
